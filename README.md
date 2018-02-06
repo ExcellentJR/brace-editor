@@ -1,6 +1,9 @@
 # brace-editor
 
-> A web editor component which based on vue2.0 and brace; 
+> A web editor component which based on vue2.0 and brace; <br />
+> 该组件是一个简易的可嵌入web页面的代码编辑器，基于brace和vue2.0；<br />
+
+![image](https://github.com/ExcellentJR/brace-editor/blob/master/static/lib/img/whole.png) <br/> 
 
 ## Build Setup
 
