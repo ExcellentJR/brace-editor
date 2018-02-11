@@ -58,18 +58,18 @@ export default {
 		return {
 			code: '',
 			editConfig: {
-				language: 'sql',
-				theme: 'chrome',
-				fontsize: '16',
-				enableBasicAutocompletion: true,
+				language: 'sql',//编辑器语言
+				theme: 'chrome',//编辑器主题
+				fontsize: '16',//编辑器字体大小
+				enableBasicAutocompletion: true,//以下三项:编辑器是否自动补全（包括本行）
 				enableSnippets: true,
 				enableLiveAutocompletion: true,
 				wrapLimitRange1: null,
 				wrapLimitRange2: null,
-				isWrap: true,
-				isShowPrintMargin: false,
-				isReadonly: false,
-				placeholder: 'Insert Code Here！'
+				isWrap: true,//是否换行
+				isShowPrintMargin: false,//是否显示格式垂线
+				isReadonly: false,//是否只读
+				placeholder: 'Insert Code Here！'//为空时的提示
 			},
 			styleConfig: {
 				width: '100%',
