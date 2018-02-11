@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<div class="holy-grid-content-items holy-grid-content-center">
-				<editor :value="code" @update:value="val => code = val" :style="styleConfig" :config="editConfig"></editor>
+				<editor :value="code" :style="styleConfig" :config="editConfig"></editor>
 			</div>
 			<div class="holy-grid-content-items holy-grid-content-right">
 				<p><strong>编辑器配置信息:</strong></p>
