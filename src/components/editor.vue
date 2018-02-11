@@ -3,7 +3,7 @@
 </template>
 <script>
 import ace from 'brace'
-import Bus from '../common/js/bus.js';
+import $eventBus from '../common/js/bus.js';
 export default {
 	name: 'editor',
 	components: {
@@ -46,16 +46,18 @@ export default {
     data() {
         return {
             editor: null,
-			editContent: "",
-			init: false,
-			code: this.value
+			editContent: this.value,
+			init: false
         }
     },
     methods: {
         setConfig() {
             var _this = this;
+            if(typeof _this.config === 'undefined' || typeof _this.config !== 'object'){
+                return
+            }
             _this.editor.$blockScrolling = Infinity;
-            _this.editor.setFontSize(_this.config.fontsize); //设置编辑器里字体的大小，貌似这个可以在外面加CSS样式，但是我试了不行，所以这样写
+            _this.editor.setFontSize(parseInt(_this.config.fontsize)); //设置编辑器里字体的大小，貌似这个可以在外面加CSS样式，但是我试了不行，所以这样写
             _this.editor.session.setMode("ace/mode/" + _this.config.language); //设置代码补全和提示的语法为python，这个需要为不同的语言写不同的模块，不然没有提示功能
             _this.editor.setOptions({ //这个到大括号结束是说设置编辑器是否自动补全，是否自动提示等
                 enableBasicAutocompletion: _this.config.enableBasicAutocompletion,
@@ -94,13 +96,6 @@ export default {
         }
     },
     watch: {
-        'value': {
-            handler: function(val) {
-				this.code = val;
-                if (this.editContent !== val)
-                    this.editor.setValue(val, 1);
-            }
-        },
         'config': {
             handler: function(val){
                 this.setConfig();
@@ -111,7 +106,7 @@ export default {
     mounted () {
         var _this = this;
         if (!_this.init) {
-           	Bus.$emit('init');
+           	$eventBus.$emit('init');
             _this.init = true;
         }
 
@@ -119,11 +114,10 @@ export default {
 
         _this.setConfig();
 
-        _this.editor.setValue(_this.code, 1);
+        _this.editor.setValue(_this.value, 1);
 
         _this.editor.on('change', function() {
-            _this.code = _this.editor.getValue();
-            _this.editContent = _this.code;
+            $eventBus.$emit('updatecode', _this.editor.getValue());
         });
     }
 }
