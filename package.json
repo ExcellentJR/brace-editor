@@ -1,9 +1,9 @@
 {
   "name": "brace-editor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A web editor component which based on vue2.0 and brace; ",
   "author": "ExcellentJR",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
